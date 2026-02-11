@@ -45,7 +45,7 @@ export default function Navbar() {
                     <Link href="/" className="hover:text-orange-600 transition-colors flex items-center gap-1">
                         HOME <ChevronDown size={14} className="opacity-0 w-0" /> {/* Spacer/Aligner if needed, or just text */}
                     </Link>
-                    <Link href="#about" className="hover:text-orange-600 transition-colors flex items-center gap-1">
+                    <Link href="/about" className="hover:text-orange-600 transition-colors flex items-center gap-1">
                         About us <ChevronDown size={14} />
                     </Link>
                     <Link href="#vols" className="hover:text-orange-600 transition-colors flex items-center gap-1">
