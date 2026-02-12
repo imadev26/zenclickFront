@@ -2,35 +2,100 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1e293b; /* Slate 800 for better readability than pure black */
+  --foreground: #1e293b;
+
+  /* Brand Colors */
+  --brand-primary: #C04000;
+  --brand-secondary: #D84A1B;
+  --brand-hover: #A03000;
+
+  /* Focus Ring */
+  --focus-ring: 2px solid var(--brand-primary);
+  --focus-ring-offset: 2px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-playfair: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-script: var(--font-dancing), cursive;
 }
 
-/* Force Light Mode mostly as per premium travel sites usually are light/fresh */
-/* but respect system if needed, though here we want control */
+/* Force Light Mode */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  overflow-x: hidden; /* Prevent horizontal scroll from animations */
+  overflow-x: hidden;
 }
 
-/* Custom Scrollbar for Webkit */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #ea580c; /* Orange 600 */
+  background: var(--brand-primary);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #c2410c;
+  background: var(--brand-hover);
+}
+
+/* Accessibility: Focus Visible Styles */
+*:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 4px;
+}
+
+/* Remove default focus for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* NUCLEAR FIX FOR FOOTER LINES */
+footer::before,
+footer::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+
+/* Typing cursor animation */
+@keyframes blink {
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

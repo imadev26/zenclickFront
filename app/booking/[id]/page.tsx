@@ -136,6 +136,7 @@ export default function BookingProcessPage({ params }: { params: { id: string } 
                             alt={flight.title}
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 128px"
                         />
                     </div>
                     <div className="flex-1 text-center md:text-left">
