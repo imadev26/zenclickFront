@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo, useEffect, Suspense } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import PageHeader from '@/components/PageHeader';
 import { useSearchParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer/Footer';
@@ -89,46 +90,18 @@ function FlightsPageContent() {
     const hasActiveFilters = searchQuery !== '' || selectedDestination !== 'all' || selectedTourType !== 'all' || priceRange[1] < 600;
 
     return (
-        <main className="min-h-screen bg-[#E6D5C3]">
+        <main className="min-h-screen bg-[#FDFBF7] font-sans">
             <Navbar />
 
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-[#C04000] to-[#D84A1B] py-20 md:py-32">
-                <div className="absolute inset-0 bg-[url('/images/hero.webp')] opacity-10 bg-cover bg-center" />
+            <PageHeader
+                title="Nos Vols"
+                subtitle="Explorez le Ciel"
+                backgroundImage="/images/hero.webp"
+                waveColor="#FDFBF7"
+            />
 
-                <div className="container mx-auto px-4 max-w-7xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center"
-                    >
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                            Our Flights
-                        </h1>
-                        <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-8">
-                            {filteredFlights.length} {filteredFlights.length === 1 ? 'Flight' : 'Flights'} Available
-                        </p>
-
-                        {/* Search Bar */}
-                        <div className="max-w-2xl mx-auto">
-                            <div className="relative">
-                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70" size={20} />
-                                <input
-                                    type="text"
-                                    placeholder="Search flights by destination, title..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/95 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white shadow-lg text-base"
-                                />
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Main Content */}
-            <section className="container mx-auto px-4 py-8 md:py-12">
+            {/* Main Content Area with Side-by-Side Layout */}
+            <div className="container mx-auto px-4 py-8 pb-20">
                 {/* Active Filters */}
                 {hasActiveFilters && (
                     <div className="mb-6">
@@ -337,7 +310,7 @@ function FlightsPageContent() {
 
                         {/* Flights Grid */}
                         {filteredFlights.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                                 {filteredFlights.map((flight, index) => (
                                     <motion.div
                                         key={flight.id}
@@ -382,7 +355,7 @@ function FlightsPageContent() {
                         )}
                     </div>
                 </div>
-            </section>
+            </div>
 
             <Footer />
         </main>

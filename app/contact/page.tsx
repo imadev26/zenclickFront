@@ -6,6 +6,7 @@ import Footer from "@/components/Footer/Footer";
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare } from 'lucide-react';
 import { FaWhatsapp, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import PageHeader from '@/components/PageHeader';
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -76,116 +77,16 @@ export default function ContactPage() {
     };
 
     return (
-        <main className="min-h-screen bg-gray-50 font-sans">
+        <main className="min-h-screen bg-[#FDFBF7] font-sans">
             {/* Fixed Navbar for contact page */}
             <Navbar />
 
-            {/* Hero Header Section */}
-            <div className="relative bg-gradient-to-br from-[#C04000] via-[#D35400] to-[#E67E22] overflow-hidden">
-                {/* Decorative Elements */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-72 h-72 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-                </div>
-
-                <div className="container mx-auto px-4 pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="text-center text-white"
-                    >
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
-                            className="inline-block mb-4"
-                        >
-                            <div className="bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/30">
-                                <p className="text-white font-semibold text-sm uppercase tracking-widest">Contactez-nous</p>
-                            </div>
-                        </motion.div>
-
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3, duration: 0.6 }}
-                            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 drop-shadow-lg"
-                        >
-                            Entrer en Contact
-                        </motion.h1>
-
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4, duration: 0.6 }}
-                            className="text-white/95 max-w-3xl mx-auto text-base md:text-lg lg:text-xl leading-relaxed drop-shadow-md"
-                        >
-                            Une question sur nos vols ? Besoin d'un devis personnalisé ?<br className="hidden sm:block" />
-                            Notre équipe est à votre écoute 7j/7.
-                        </motion.p>
-
-                        {/* Quick Contact Buttons */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6, duration: 0.6 }}
-                            className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-4 mt-8"
-                        >
-                            <a
-                                href="tel:+212751622180"
-                                className="group flex items-center gap-3 bg-white text-[#C04000] px-6 py-3 rounded-full font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                            >
-                                <Phone size={20} className="group-hover:rotate-12 transition-transform" />
-                                <span>Appelez-nous</span>
-                            </a>
-                            <a
-                                href="https://wa.me/212751622180"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex items-center gap-3 bg-green-500 text-white px-6 py-3 rounded-full font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                            >
-                                <FaWhatsapp size={20} className="group-hover:scale-110 transition-transform" />
-                                <span>WhatsApp</span>
-                            </a>
-                            <a
-                                href="mailto:contact@skyexperience.com"
-                                className="group flex items-center gap-3 bg-white/10 backdrop-blur-sm text-white border-2 border-white/40 px-6 py-3 rounded-full font-bold hover:bg-white/20 hover:border-white/60 transition-all duration-300"
-                            >
-                                <Mail size={20} className="group-hover:rotate-12 transition-transform" />
-                                <span>Email</span>
-                            </a>
-                        </motion.div>
-                    </motion.div>
-                </div>
-
-                {/* Wave Separator - Layered Design */}
-                <div className="absolute bottom-0 left-0 right-0">
-                    <svg
-                        className="w-full h-20 md:h-28 lg:h-32"
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none"
-                    >
-                        {/* Background layer - subtle orange */}
-                        <path
-                            d="M0,0 C300,80 600,40 900,80 C1050,100 1150,60 1200,80 L1200,120 L0,120 Z"
-                            className="fill-[#C04000] opacity-15"
-                        />
-
-                        {/* Middle layer - lighter orange */}
-                        <path
-                            d="M0,20 C300,90 600,50 900,90 C1050,110 1150,70 1200,90 L1200,120 L0,120 Z"
-                            className="fill-[#D84A1B] opacity-25"
-                        />
-
-                        {/* Top layer - white/gray (main) */}
-                        <path
-                            d="M0,40 C300,100 600,60 900,100 C1050,115 1150,80 1200,100 L1200,120 L0,120 Z"
-                            className="fill-gray-50"
-                        />
-                    </svg>
-                </div>
-            </div>
+            <PageHeader
+                title="Entrer en Contact"
+                subtitle="Contactez-nous"
+                backgroundImage="/images/hero.webp"
+                waveColor="#FDFBF7"
+            />
 
             {/* Info Cards */}
             <div className="container mx-auto px-4 py-12 md:py-16">
@@ -447,7 +348,7 @@ export default function ContactPage() {
                                         required
                                         value={formData.subject}
                                         onChange={(e) => { setFormData({ ...formData, subject: e.target.value }); setErrors({ ...errors, subject: '' }); }}
-                                        className={`w-full px-4 py-3 pl-10 border ${errors.subject ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-[#C04000] focus:border-transparent outline-none transition-all`}
+                                        className={`w-full px-4 py-3 pl-10 border ${errors.subject ? 'border-red-500' : 'border-gray-300'} rounded-xl focus:ring-2 focus:ring-[#C04000] focus:border-transparent outline-none transition-all`}
                                         placeholder="De quoi s'agit-il ?"
                                     />
                                     <MessageSquare className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
@@ -465,7 +366,7 @@ export default function ContactPage() {
                                     value={formData.message}
                                     onChange={(e) => { if (e.target.value.length <= 500) { setFormData({ ...formData, message: e.target.value }); setErrors({ ...errors, message: '' }); } }}
                                     rows={5}
-                                    className={`w-full px-4 py-3 border ${errors.message ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-[#C04000] focus:border-transparent outline-none transition-all resize-none`}
+                                    className={`w-full px-4 py-3 border ${errors.message ? 'border-red-500' : 'border-gray-300'} rounded-xl focus:ring-2 focus:ring-[#C04000] focus:border-transparent outline-none transition-all resize-none`}
                                     placeholder="Indiquez-nous vos dates préférées, la taille de votre groupe ou toute question que vous pourriez avoir..."
                                     maxLength={500}
                                 ></textarea>
@@ -473,7 +374,7 @@ export default function ContactPage() {
                             </div>
 
                             {/* Privacy Checkbox */}
-                            <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl border border-gray-200">
                                 <input
                                     type="checkbox"
                                     id="privacy"
@@ -491,7 +392,7 @@ export default function ContactPage() {
                                 <button
                                     type="submit"
                                     disabled={submitStatus === 'loading'}
-                                    className={`flex-1 ${submitStatus === 'loading' ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#C04000] hover:bg-[#A03000]'} text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2`}
+                                    className={`flex-1 ${submitStatus === 'loading' ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#C04000] hover:bg-[#A03000]'} text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2`}
                                 >
                                     {submitStatus === 'loading' ? (
                                         <>
@@ -509,7 +410,7 @@ export default function ContactPage() {
                                     type="button"
                                     onClick={handleReset}
                                     disabled={submitStatus === 'loading'}
-                                    className="px-6 py-3 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="px-6 py-3 border-2 border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     Effacer le formulaire
                                 </button>

@@ -26,6 +26,7 @@ const dancingScript = Dancing_Script({
 export const metadata: Metadata = {
   title: "Hot Air Balloon Marrakech | Sky Experience - Unforgettable Sunrise Flights",
   description: "Experience the magic of Marrakech from above with Sky Experience. Certified pilots, 4.9/5 rating, free cancellation. Book your unforgettable hot air balloon flight today!",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://skyexperience.com'),
   keywords: ['hot air balloon Marrakech', 'balloon ride Morocco', 'Marrakech sunrise flight', 'hot air balloon tour', 'sky experience', 'Marrakech activities'],
   authors: [{ name: 'Sky Experience' }],
   openGraph: {
@@ -69,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" suppressHydrationWarning={true} data-lt-installed="true">
+    <html lang="fr" suppressHydrationWarning={true} data-lt-installed="true" data-scroll-behavior="smooth">
       <body
         className={`${inter.variable} ${playfair.variable} ${dancingScript.variable} antialiased font-sans`}
         suppressHydrationWarning={true}

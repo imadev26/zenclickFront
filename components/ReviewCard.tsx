@@ -37,6 +37,7 @@ export default function ReviewCard({
                                 alt={name}
                                 fill
                                 className="object-cover"
+                                sizes="80px"
                             />
                         </div>
                     ) : (

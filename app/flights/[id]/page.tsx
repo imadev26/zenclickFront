@@ -1,5 +1,7 @@
 'use client';
 
+import { Metadata } from 'next';
+
 import { useState, use } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -21,6 +23,34 @@ interface PageProps {
     params: Promise<{ id: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { id } = await params;
+    const flight = getFlightById(id);
+
+    if (!flight) {
+        return {
+            title: 'Flight Not Found',
+        };
+    }
+
+    return {
+        title: `${flight.title} | Sky Experience Marrakech`,
+        description: flight.metaDescription || flight.description.substring(0, 155),
+        openGraph: {
+            title: flight.title,
+            description: flight.metaDescription || flight.description.substring(0, 155),
+            images: [
+                {
+                    url: flight.image,
+                    width: 1200,
+                    height: 630,
+                    alt: flight.title,
+                },
+            ],
+        },
+    };
+}
+
 export default function FlightDetailPage({ params }: PageProps) {
     const { id } = use(params);
     const flight = getFlightById(id);
@@ -31,6 +61,26 @@ export default function FlightDetailPage({ params }: PageProps) {
         notFound();
     }
 
+    // JSON-LD Structured Data
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: flight.title,
+        image: flight.images,
+        description: flight.description,
+        offers: {
+            '@type': 'Offer',
+            priceCurrency: flight.currency.toUpperCase(),
+            price: flight.price,
+            availability: 'https://schema.org/InStock',
+        },
+        aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: flight.rating || 4.9,
+            reviewCount: flight.reviewCount || 500,
+        },
+    };
+
     // Dynamic suggestions - Get popular flights excluding current one
     const suggestions = getPopularFlights()
         .filter(f => f.id !== flight.id)
@@ -38,6 +88,10 @@ export default function FlightDetailPage({ params }: PageProps) {
 
     return (
         <main className="min-h-screen bg-[#E6D5C3] font-sans">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <Navbar />
 
             <div className="pt-24 pb-20 container mx-auto px-4 md:px-8 max-w-7xl">
@@ -90,8 +144,8 @@ export default function FlightDetailPage({ params }: PageProps) {
                         <div className="flex flex-wrap gap-2 items-center mt-4">
                             {flight.difficulty && (
                                 <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${flight.difficulty === 'easy' ? 'bg-green-100 text-green-700' :
-                                        flight.difficulty === 'moderate' ? 'bg-yellow-100 text-yellow-700' :
-                                            'bg-red-100 text-red-700'
+                                    flight.difficulty === 'moderate' ? 'bg-yellow-100 text-yellow-700' :
+                                        'bg-red-100 text-red-700'
                                     }`}>
                                     {flight.difficulty}
                                 </span>

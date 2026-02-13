@@ -1,6 +1,5 @@
-'use client';
+import { Metadata } from 'next';
 
-import { use } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -15,19 +14,68 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
-export default function BlogPostPage({ params }: PageProps) {
-    const { slug } = use(params);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const post = getBlogBySlug(slug);
+
+    if (!post) {
+        return {
+            title: 'Post Not Found',
+        };
+    }
+
+    return {
+        title: `${post.title} | Sky Experience Blog`,
+        description: post.metaDescription || post.excerpt.substring(0, 155),
+        openGraph: {
+            title: post.title,
+            description: post.metaDescription || post.excerpt.substring(0, 155),
+            type: 'article',
+            publishedTime: post.publishedAt || post.createdAt,
+            authors: post.author ? [post.author.name] : ['Sky Experience'],
+            images: [
+                {
+                    url: post.image,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+        },
+    };
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+    const { slug } = await params;
     const post = getBlogBySlug(slug);
 
     if (!post) {
         notFound();
     }
 
+    // JSON-LD for Blog Posting
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        image: post.image,
+        datePublished: post.publishedAt || post.createdAt,
+        dateModified: post.updatedAt,
+        author: {
+            '@type': 'Person',
+            name: post.author?.name || 'Sky Experience Team',
+        },
+    };
+
     // Get related posts using helper function
     const relatedPosts = getRelatedBlogs(slug, 3);
 
     return (
         <main className="min-h-screen bg-gray-50">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <Navbar />
 
             {/* Hero Section with Featured Image */}
@@ -38,7 +86,6 @@ export default function BlogPostPage({ params }: PageProps) {
                     fill
                     className="object-cover"
                     priority
-                    quality={90}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
