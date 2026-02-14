@@ -13,7 +13,7 @@ export default function FAQSection() {
     };
 
     return (
-        <section className="py-24 bg-white relative z-10">
+        <section id="faq" className="py-24 bg-white relative z-10">
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-sky-900 mb-6 font-serif">Questions Fréquentes</h2>

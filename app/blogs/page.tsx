@@ -4,10 +4,11 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, ArrowLeft, Search, X, ChevronRight, User } from "lucide-react";
+import { Clock, Search, X, User } from "lucide-react";
 import { getPublishedBlogs } from "@/app/data/blogs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer/Footer";
+import PageHeader from "@/components/PageHeader";
 
 export default function BlogsPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -39,49 +40,12 @@ export default function BlogsPage() {
             <Navbar variant="fixed" />
 
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-[#C04000] to-[#D84A1B] py-20 md:py-32">
-                <div className="absolute inset-0 bg-[url('/images/hero.webp')] opacity-10 bg-cover bg-center" />
-
-                <div className="container mx-auto px-4 max-w-7xl relative z-10">
-                    {/* Breadcrumbs */}
-                    <nav className="mb-8 flex items-center gap-2 text-sm text-white/80 overflow-x-auto scrollbar-hide" aria-label="Breadcrumb">
-                        <Link href="/" className="hover:text-white transition-colors whitespace-nowrap">
-                            Home
-                        </Link>
-                        <ChevronRight size={16} className="text-white/60 flex-shrink-0" />
-                        <span className="text-white font-medium">Blog</span>
-                    </nav>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center"
-                    >
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                            Latest News & Stories
-                        </h1>
-                        <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
-                            Insights, tips, and stories from the sky. Discover everything about hot air ballooning in Marrakech.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Wave Separator */}
-            <div className="w-full bg-white -mt-1">
-                <svg 
-                    className="w-full h-16 md:h-24 block" 
-                    viewBox="0 0 1440 320" 
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path 
-                        fill="#ffffff" 
-                        d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                    />
-                </svg>
-            </div>
+            <PageHeader
+                title="Latest News & Stories"
+                subtitle="INSIGHTS & TIPS"
+                backgroundImage="/images/hero.webp"
+                waveColor="#ffffff"
+            />
 
             {/* Search & Filter Section */}
             <section className="py-8 bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">

@@ -11,6 +11,7 @@ interface PageHeaderProps {
     backgroundImage: string;
     waveColor?: string;
     heightClass?: string;
+    withBlur?: boolean;
 }
 
 export default function PageHeader({
@@ -18,22 +19,30 @@ export default function PageHeader({
     subtitle,
     backgroundImage,
     waveColor = '#FDFBF7',
-    heightClass = 'h-[50vh] min-h-[400px]'
+    heightClass = 'h-[50vh] min-h-[400px]',
+    withBlur = false
 }: PageHeaderProps) {
     return (
         <div className={`relative w-full ${heightClass} flex items-center justify-center`}>
+            {/* Background Image */}
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src={backgroundImage}
                     alt={title}
                     fill
-                    className="object-cover object-center"
+                    className="object-cover object-bottom"
                     priority
                 />
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                {/* Blur Overlay */}
+                {withBlur && (
+                    <div className="absolute inset-0 backdrop-blur-[3px] z-[1]" />
+                )}
+
+                {/* Dark Overlay Gradient */}
+                <div className="absolute inset-0 bg-black/40 z-[2]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[2]" />
             </div>
 
             {/* Content */}

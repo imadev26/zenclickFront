@@ -11,7 +11,7 @@ export default function BlogSection() {
     const posts = BLOG_POSTS.slice(0, 3);
 
     return (
-        <section className="py-24 bg-[#FDFBF7]">
+        <section id="blog" className="py-24 bg-[#FDFBF7]">
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-sky-900 mb-4 font-serif">Latest News</h2>

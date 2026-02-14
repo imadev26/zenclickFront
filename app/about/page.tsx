@@ -17,12 +17,12 @@ export default function AboutPage() {
       <PageHeader
         title="Notre Histoire"
         subtitle="Sky Experience"
-        backgroundImage="/images/aboutus.png"
-        waveColor="#ffffff"
+        backgroundImage="/images/hero.webp"
+        waveColor="#FDFBF7"
       />
 
       {/* SECTION 1 */}
-      <section className="bg-white py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center">
 
           {/* IMAGE SIDE */}

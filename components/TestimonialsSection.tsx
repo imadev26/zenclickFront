@@ -9,7 +9,7 @@ export default function TestimonialsSection() {
     const testimonials = TESTIMONIALS;
 
     return (
-        <section className="py-24 bg-[#E6D5C3]"> {/* Beige background similar to screenshot */}
+        <section id="testimonials" className="py-24 bg-[#E6D5C3]"> {/* Beige background similar to screenshot */}
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="text-center mb-16">
                     <h2 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-sm">Client's Testimonials</h2>

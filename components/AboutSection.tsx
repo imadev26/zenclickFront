@@ -10,17 +10,17 @@ export default function AboutSection() {
   return (
     <>
       {/* SECTION 1 */}
-      <section className="bg-white py-24 ">
+      <section id="about" className="bg-white py-24 ">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
 
           {/* IMAGE SIDE */}
           <div className="relative">
-            <div className="relative w-full h-[720px]">
+            <div className="relative w-full h-[720px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/balloon-intro.png"
                 alt="Adventure Balloon"
                 fill
-                className="object-cover "
+                className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>

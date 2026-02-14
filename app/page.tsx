@@ -39,7 +39,7 @@ export default function Home() {
             src="/images/hero.webp"
             alt="Hot Air Balloon at Sunrise"
             fill
-            className="object-cover object-center"
+            className="object-cover object-bottom"
             priority
             sizes="100vw"
           />
@@ -127,21 +127,18 @@ export default function Home() {
 
       {/* Wave Separator */}
       <div className="w-full bg-white -mt-1">
-        <svg 
-          className="w-full h-16 md:h-24 block" 
-          viewBox="0 0 1440 320" 
+        <svg
+          className="w-full h-16 md:h-24 block"
+          viewBox="0 0 1440 320"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path 
-            fill="#ffffff" 
+          <path
+            fill="#ffffff"
             d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           />
         </svg>
       </div>
-
-      {/* --- WHY CHOOSE US SECTION --- */}
-      <WhyChooseSection />
 
       {/* --- TRUSTED BY SECTION --- */}
       <section className="py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20 bg-[#FDFBF7] relative" aria-label="Trusted partners">
@@ -190,6 +187,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* --- ABOUT SECTION --- */}
+      <AboutSection />
+
       {/* --- FLIGHTS SECTION --- */}
       <section id="vols" className="py-12 xs:py-14 sm:py-16 md:py-20 lg:py-24 bg-gray-50 scroll-mt-16 relative" aria-labelledby="flights-heading">
         <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-12">
@@ -218,8 +218,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- ABOUT SECTION --- */}
-      <AboutSection />
+      {/* --- WHY CHOOSE US SECTION --- */}
+      <WhyChooseSection />
 
       {/* --- PANORAMIC SECTION --- */}
       <PanoramicSection />
@@ -227,11 +227,11 @@ export default function Home() {
       {/* --- TESTIMONIALS SECTION --- */}
       <TestimonialsSection />
 
-      {/* --- BLOG SECTION --- */}
-      <BlogSection />
-
       {/* --- FAQ SECTION --- */}
       <FAQSection />
+
+      {/* --- BLOG SECTION --- */}
+      <BlogSection />
 
       <Footer />
     </main >

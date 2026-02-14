@@ -6,7 +6,7 @@ import { Facebook, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
     return (
-        <footer className="bg-[#1a2632] text-white pt-20 pb-10 font-sans relative z-10 before:hidden after:hidden border-t-[6px] border-[#F27A23] outline-none -mt-1" style={{ backgroundImage: 'none' }}>
+        <footer id="contact" className="bg-[#1a2632] text-white pt-20 pb-10 font-sans relative z-10 before:hidden after:hidden border-t-[6px] border-[#F27A23] outline-none -mt-1" style={{ backgroundImage: 'none' }}>
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
